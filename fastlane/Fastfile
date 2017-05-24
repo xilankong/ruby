@@ -11,7 +11,7 @@ desc "UI automation test"
     project            = options[:project]
     device_udid        = options[:device_udid]
     device_type        = options[:device_type]
-    script             = options[:script]
+    script             = "UIAutoMonkey.js"
     report_output_path = options[:report_output_path]
     
     git_pull
