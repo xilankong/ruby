@@ -3,5 +3,27 @@ fastlane_version "2.33.0"
 default_platform :ios
 
 platform :ios do
+
+desc "UI automation test"
+  lane :do_monkey_test do |options|
+    times              = options[:times] || 2 
+    scheme             = options[:scheme]
+    project            = options[:project]
+    device_udid        = options[:device_udid]
+    device_type        = options[:device_type]
+    script             = options[:script]
+    report_output_path = options[:report_output_path]
+    
+    git_pull
+    pod_install
+    xcodebuild(scheme: scheme, arch: 'x86_64', sdk: 'iphonesimulator9.3', workspace: "#{project}.xcworkspace", configuration: 'Debug')
+    app_path = get_debug_app_path(scheme: scheme, project: project)
+    (1..times.to_i).each do |i|
+      install_app_on_simulator(device_type: device_type, app_path: app_path) # 使用ios-sim命令安装app到模拟器，如果是真机的话，则使用ios-deploy
+      sleep(30)
+      instruments_ui_automation(device: device_udid, app_path: app_path, report_output_path: report_output_path, script:script)
+    end
+    
+  end
  
 end
