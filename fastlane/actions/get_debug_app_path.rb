@@ -21,7 +21,7 @@ module Fastlane
         command << '-scheme'
         command << "#{scheme}"
         command << '-sdk'
-        command << "iphonesimulator9.3"
+        command << "iphonesimulator10.3"
         command << '-arch'
         command << "x86_64"
         command << '-configuration Debug -showBuildSettings | grep CONFIGURATION_BUILD_DIR'
