@@ -6,7 +6,7 @@ module Fastlane
 
     class PodInstallAction < Action
       def self.run(params)
-        repo = "-no-repo-update"
+        repo = "--no-repo-update"
         command = []
 
         command << "pod install"
