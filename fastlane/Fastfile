@@ -16,7 +16,7 @@ desc "UI automation test"
     
     git_pull
     pod_install
-    xcodebuild(scheme: scheme, arch: 'x86_64', sdk: 'iphonesimulator9.3', workspace: "#{project}.xcworkspace", configuration: 'Debug')
+    xcodebuild(scheme: scheme, arch: 'x86_64', sdk: 'iphonesimulator10.3', workspace: "#{project}.xcworkspace", configuration: 'Debug')
     app_path = get_debug_app_path(scheme: scheme, project: project)
     (1..times.to_i).each do |i|
       install_app_on_simulator(device_type: device_type, app_path: app_path) # 使用ios-sim命令安装app到模拟器，如果是真机的话，则使用ios-deploy
